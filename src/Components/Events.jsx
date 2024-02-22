@@ -1,4 +1,4 @@
-import listEvents from '../../data/events.json';
+import listEvents from '../../data/event.json';
 import Event from './Event.jsx';
 import { Container, Col, Row } from 'react-bootstrap';
 import { Alert } from 'react-bootstrap';

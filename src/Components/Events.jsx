@@ -22,7 +22,7 @@ export default function Events() {
     return <>
         <Container>
             {showWelcome && <Alert variant="success">Welcome to the events list!</Alert>}
-            <Row>
+            <Row> 
                 {listEvents.map((e) => {
                     return <Col><Event e={e} showAlert={handleShowAlert}></Event></Col>
                 })}

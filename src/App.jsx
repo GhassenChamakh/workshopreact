@@ -1,33 +1,27 @@
-import { Link, Outlet } from 'react-router-dom'
 import './App.css'
-import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Nav } from 'react-bootstrap';
+import {Route,Routes} from 'react-router-dom';
+import Events from './Components/Events';
+import NavigationBar from './Components/NavigationBar';
+import EventDetails from './Components/EventDetails';
+import { Suspense } from 'react';
+
 
 function App() {
   return (
     <>
-      <Nav variant="tabs" defaultActiveKey="/home">
-        <Nav.Item>
-          <Nav.Link > <Link to={'/'}>Home</Link></Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link ><Link to={'/ecmascript'}>Ecmascript</Link></Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link ><Link to={'/ClassComponent'}>ClassComponent</Link></Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link ><Link to={'/FunctionalComponent'}>FunctionalComponent</Link></Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link ><Link to={'/Events'}>Events list</Link></Nav.Link>
-        </Nav.Item>
-      </Nav>
-
-      <Outlet />
+    <Suspense fallback={<p>loading..</p>}>
+    <NavigationBar/>
+     <Routes>
+      <Route path="/events">
+        <Route index element={<Events/>}/>
+        <Route path="details/:nom" element={<EventDetails/>}/>
+      </Route>
+      <Route path="*" element={<> <p>Not Found</p></>}/>
+     </Routes>
+     </Suspense>
     </>
-  )
+  );
 }
 
 export default App

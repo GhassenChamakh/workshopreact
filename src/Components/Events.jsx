@@ -1,8 +1,9 @@
-import listEvents from '../../data/event.json';
 import Event from './Event.jsx';
 import { Container, Col, Row } from 'react-bootstrap';
 import { Alert } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
+import { getallEvents } from '../service/api.js';
+
 
 export default function Events() {
     const [showAlert, setShowAlert] = useState(false);
@@ -19,6 +20,19 @@ export default function Events() {
             setShowWelcome(false);
         }, 2000);
     },[]);
+    const [listEvents, setListEvents] = useState([]);
+    useEffect(() => {
+      const  fetchList=async()=>{
+        const events = await getallEvents();
+setListEvents(events.data);  }
+            fetchList();
+        
+    }, []); 
+    const deleteEvent=async(id)=>{
+        await deleteEvent(id);
+        setListEvents(listEvents.filter((e)=>e.id!=id));
+    }
+    
     return <>
         <Container>
             {showWelcome && <Alert variant="success">Welcome to the events list!</Alert>}

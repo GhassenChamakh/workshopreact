@@ -5,6 +5,7 @@ import Events from './Components/Events';
 import NavigationBar from './Components/NavigationBar';
 import EventDetails from './Components/EventDetails';
 import { Suspense } from 'react';
+import AddEvent from './Components/AddEvent';
 
 
 function App() {
@@ -15,7 +16,9 @@ function App() {
      <Routes>
       <Route path="/events">
         <Route index element={<Events/>}/>
-        <Route path="details/:nom" element={<EventDetails/>}/>
+        <Route path="details/:id" element={<EventDetails/>}/>
+        <Route path="add" element={<AddEvent/>}/>
+
       </Route>
       <Route path="*" element={<> <p>Not Found</p></>}/>
      </Routes>

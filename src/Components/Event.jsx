@@ -2,6 +2,8 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { deleteEvent } from '../service/api';
+import PropTypes from 'prop-types';
 export default function Event(props) {
     const [e, setEvent] = useState(props.e);
     const bookEvent = () => {
@@ -22,17 +24,13 @@ export default function Event(props) {
             return newProp;
         });
     };
-    return <>
-        <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={e.nbTickets == 0 ? `images/sold_out.png` : `images/${e.img}`} />
-            <Card.Body>
-                <Card.Title><Link  to={`/events/details/${e.name}`}>{e.name}</Link></Card.Title>
-                <Card.Text>Price: {e.price}</Card.Text>
-                <Card.Text>Number of tickets: {e.nbTickets}</Card.Text>
-                <Card.Text>Number of participants: {e.nbParticipants}</Card.Text>
-                <Button variant="primary" disabled={e.nbTickets == 0} onClick={bookEvent}>Book an event</Button>
-                <Button style={{marginLeft:"5px"}} variant={e.like ? "danger" : "success"} onClick={likeEvent}>{e.like ? "Dislike" : "Like"}</Button>
-            </Card.Body>
-        </Card>
-    </>
+
+
+
+    // ...
+
+    Event.propTypes = {
+        // ...
+        deleteEvent: PropTypes.func.isRequired,
+    };
 }
